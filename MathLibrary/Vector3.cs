@@ -121,5 +121,10 @@ namespace MathLibrary
         {
             return new Vector3(lhs.X / scalar, lhs.Y / scalar, lhs.Z / scalar);
         }
+
+        public static implicit operator Vector3((float, float,float) tuple)
+        {
+            return new Vector3(tuple.Item1, tuple.Item2, tuple.Item3);
+        }
     }
 }

@@ -105,6 +105,10 @@ namespace MathLibrary
             return new Vector2(lhs.X / scalar, lhs.Y / scalar);
         }
 
+        public static implicit operator Vector2((float, float) tuple)
+        {
+            return new Vector2(tuple.Item1, tuple.Item2);
+        }
 
 
     }
