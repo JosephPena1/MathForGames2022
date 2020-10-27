@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MathLibrary;
 
 namespace MathForGames
 {
@@ -10,9 +11,20 @@ namespace MathForGames
 
         public bool Started { get; private set; }
 
+        private Matrix3 _world;
+
+        public Matrix3 World
+        {
+            get
+            {
+                return _world;
+            }
+        }
+
         public Scene()
         {
             _actors = new Actor[0];
+            _world = new Matrix3();
         }
 
         public void AddActor(Actor actor)
