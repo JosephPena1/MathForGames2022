@@ -53,7 +53,7 @@ namespace MathForGames
                 + Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_D));
             int yDirection = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_W))
                 + Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_S));
-            //Rotate(rotation += deltaTime);
+            Rotate(rotation += deltaTime);
             //Set the actors current velocity to be the a vector with the direction found scaled by the speed
             Velocity = new Vector2(xDirection, yDirection);
             Velocity = Velocity.Normalized * Speed;

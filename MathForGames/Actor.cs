@@ -21,7 +21,7 @@ namespace MathForGames
         protected Vector2 _velocity;
         protected ConsoleColor _color;
         protected Color _rayColor;
-        protected Texture2D sprite;
+        protected Sprite _sprite;
         public bool Started { get; private set; }
 
         public Vector2 Forward
@@ -70,7 +70,7 @@ namespace MathForGames
             Position = new Vector2(x, y);
             _velocity = new Vector2();
             _color = color;
-            sprite = Raylib.LoadTexture("Images/player.png");
+            _sprite = new Sprite(Raylib.LoadTexture("Images/player.png"));
         }
 
 
@@ -83,7 +83,7 @@ namespace MathForGames
             : this(x,y,icon,color)
         {
             _rayColor = rayColor;
-            sprite = Raylib.LoadTexture("Images/player.png");
+            _sprite = new Sprite(Raylib.LoadTexture("Images/player.png"));
         }
 
         
@@ -142,10 +142,8 @@ namespace MathForGames
             //Draws the actor and a line indicating it facing to the raylib window.
             //Scaled to match console movement
             //Raylib.DrawText(_icon.ToString(), (int)(Position.X * 32), (int)(Position.Y * 32), 32, _rayColor);
-            sprite.width = (int)_transform.m11;
-            sprite.height = (int)_transform.m22;
-            Raylib.DrawTextureEx(sprite, new System.Numerics.Vector2((Position.X * 32) - (sprite.width/2), (Position.Y * 32) - (sprite.height / 2)), 0, 32, Color.WHITE);
-            //Raylib.DrawRectangle((int)(Position.X * 32), (int)(Position.Y * 32), (int)(_transform.m11 * 32), (int)(_transform.m22 * 32), _rayColor);
+
+            _sprite.Draw(_transform);
             Raylib.DrawLine(
                 (int)(Position.X * 32),
                 (int)(Position.Y * 32),

@@ -34,23 +34,23 @@ namespace MathForGames
             }
         }
 
-        public Sprite(Texture2D texture, int width, int height)
+        public Sprite(Texture2D texture)
         {
             _texture = texture;
-            _texture.width = width;
-            _texture.height = height;
         }
 
-        public Sprite(string path, int width, int height)
+        public Sprite(string path)
         {
             _texture = Raylib.LoadTexture(path);
-            _texture.width = width;
-            _texture.height = height;
         }
 
-        public void Draw(Vector2 position, float rotation)
+        public void Draw(Matrix3 transform)
         {
-            //Raylib.DrawTextureEx()
+            _texture.width = (int)transform.m11;
+            _texture.height = (int)transform.m22;
+            float rotation = (float)Math.Atan2(transform.m21, transform.m11);
+            Raylib.DrawTextureEx(_texture, new System.Numerics.Vector2(transform.m13 * 32, transform.m23 * 32),
+                (float)(rotation * 180.0f / Math.PI), 32, Color.WHITE);
         }
     }
 }
