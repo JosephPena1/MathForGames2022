@@ -107,7 +107,7 @@ namespace MathForGames
                 _scale.m22 *= scale.Y;
         }
 
-        public void Rotate(float radians)
+        public void SetRotation(float radians)
         {
             _rotation.m11 = (float)Math.Cos(radians);
             _rotation.m12 = (float)Math.Sin(radians);
@@ -137,12 +137,10 @@ namespace MathForGames
             Position += _velocity * deltaTime;
         }
 
+
         public virtual void Draw()
         {
-            //Draws the actor and a line indicating it facing to the raylib window.
-            //Scaled to match console movement
-            //Raylib.DrawText(_icon.ToString(), (int)(Position.X * 32), (int)(Position.Y * 32), 32, _rayColor);
-
+            //Draws the actor and a line indicating it facing to the raylib window
             _sprite.Draw(_transform);
             Raylib.DrawLine(
                 (int)(Position.X * 32),
@@ -154,17 +152,14 @@ namespace MathForGames
 
             //Changes the color of the console text to be this actors color
             Console.ForegroundColor = _color;
-
-            //Only draws the actor on the console if it is within the bounds of the window
-            if(Position.X >= 0 && Position.X < Console.WindowWidth 
-                && Position.Y >= 0  && Position.Y < Console.WindowHeight)
-            {
-                Console.SetCursorPosition((int)Position.X, (int)Position.Y);
-                Console.Write(_icon);
-            }
             
             //Reset console text color to be default color
             Console.ForegroundColor = Game.DefaultColor;
+        }
+
+        public virtual void Debug()
+        {
+
         }
 
         public virtual void End()

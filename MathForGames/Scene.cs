@@ -138,6 +138,15 @@ namespace MathForGames
             }
         }
 
+        public virtual void Debug()
+        {
+            for (int i = 0; i < _actors.Length; i++)
+            {
+                if (_actors[i].Started)
+                    _actors[i].Debug();
+            }
+        }
+
         public virtual void End()
         {
             for (int i = 0; i < _actors.Length; i++)

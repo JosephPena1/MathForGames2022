@@ -53,12 +53,21 @@ namespace MathForGames
                 + Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_D));
             int yDirection = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_W))
                 + Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_S));
-            Rotate(rotation += deltaTime);
+            SetRotation(rotation += (float)(Math.PI/16) * deltaTime);
             //Set the actors current velocity to be the a vector with the direction found scaled by the speed
             Velocity = new Vector2(xDirection, yDirection);
             Velocity = Velocity.Normalized * Speed;
             
             base.Update(deltaTime);
+        }
+
+        public override void Debug()
+        {
+            //Console.WriteLine("Player Rotation X: (" + _transform.m11 + "," + _transform.m21 + ")");
+            //Console.WriteLine("Player Rotation Y: (" + _transform.m12 + "," + _transform.m22 + ")");
+            Console.WriteLine("Player Magnitude X: " + ((Vector2)(_transform.m11, _transform.m21)).Magnitude);
+            Console.WriteLine("Player Magnitude Y: " + ((Vector2)(_transform.m12, _transform.m22)).Magnitude);
+            base.Debug();
         }
     }
 }

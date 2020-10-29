@@ -192,19 +192,17 @@ namespace MathForGames
             Scene scene2 = new Scene();
 
             //Create the actors to add to our scene
-            Actor actor = new Actor(0,0,Color.GREEN,'■',ConsoleColor.Green);
-            Enemy enemy = new Enemy(10, 10, Color.GREEN, '■', ConsoleColor.Green);
+            //Actor actor = new Actor(0,0,Color.GREEN,'■',ConsoleColor.Green);
+            //Enemy enemy = new Enemy(10, 10, Color.GREEN, '■', ConsoleColor.Green);
             Player player = new Player(0, 1,Color.BLUE, '@', ConsoleColor.Red);
-            player.Scale((1, 1));
-            //player.Rotate(1);
-            actor.Velocity.X = 1;
-            enemy.Target = player;
+            //actor.Velocity.X = 1;
+            //enemy.Target = player;
             player.Speed = 5;
-
+            player.Scale((2, 3));
             //Add actors to the scenes
             scene1.AddActor(player);
-            scene1.AddActor(actor);
-            scene1.AddActor(enemy);
+            //scene1.AddActor(actor);
+            //scene1.AddActor(enemy);
             scene2.AddActor(player);
             
             //Sets the starting scene index and adds the scenes to the scenes array
@@ -236,7 +234,6 @@ namespace MathForGames
             Raylib.BeginDrawing();
 
             Raylib.ClearBackground(Color.BLACK);
-            Console.Clear();
             _scenes[_currentSceneIndex].Draw();
 
             Raylib.EndDrawing();
@@ -250,6 +247,11 @@ namespace MathForGames
                 _scenes[_currentSceneIndex].End();
         }
 
+        public void Debug()
+        {
+            if (_scenes[_currentSceneIndex].Started)
+                _scenes[_currentSceneIndex].Debug();
+        }
 
         //Handles all of the main game logic including the main game loop.
         public void Run()
@@ -267,6 +269,9 @@ namespace MathForGames
                 Update(deltaTime);
                 //Call draw for all objects in game
                 Draw();
+
+                Debug();
+                
                 //Clear the input stream for the console window
                 while (Console.KeyAvailable)
                     Console.ReadKey(true);

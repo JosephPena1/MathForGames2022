@@ -46,8 +46,8 @@ namespace MathForGames
 
         public void Draw(Matrix3 transform)
         {
-            _texture.width = (int)transform.m11;
-            _texture.height = (int)transform.m22;
+            _texture.width = (int)((Vector2)(transform.m11, transform.m21)).Magnitude;
+            _texture.height = (int)((Vector2)(transform.m12, transform.m22)).Magnitude;
             float rotation = (float)Math.Atan2(transform.m21, transform.m11);
             Raylib.DrawTextureEx(_texture, new System.Numerics.Vector2(transform.m13 * 32, transform.m23 * 32),
                 (float)(rotation * 180.0f / Math.PI), 32, Color.WHITE);
