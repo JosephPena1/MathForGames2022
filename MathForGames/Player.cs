@@ -65,8 +65,8 @@ namespace MathForGames
         {
             //Console.WriteLine("Player Rotation X: (" + _transform.m11 + "," + _transform.m21 + ")");
             //Console.WriteLine("Player Rotation Y: (" + _transform.m12 + "," + _transform.m22 + ")");
-            Console.WriteLine("Player Magnitude X: " + ((Vector2)(_transform.m11, _transform.m21)).Magnitude);
-            Console.WriteLine("Player Magnitude Y: " + ((Vector2)(_transform.m12, _transform.m22)).Magnitude);
+            //Console.WriteLine("Player Magnitude X: " + ((Vector2)(_transform.m11, _transform.m21)).Magnitude);
+            //Console.WriteLine("Player Magnitude Y: " + ((Vector2)(_transform.m12, _transform.m22)).Magnitude);
             base.Debug();
         }
     }

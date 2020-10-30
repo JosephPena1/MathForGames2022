@@ -46,10 +46,20 @@ namespace MathForGames
 
         public void Draw(Matrix3 transform)
         {
-            _texture.width = (int)((Vector2)(transform.m11, transform.m21)).Magnitude;
-            _texture.height = (int)((Vector2)(transform.m12, transform.m22)).Magnitude;
+            float xMagnitude = (float)Math.Round(((Vector2)(transform.m11, transform.m21)).Magnitude);
+            float yMagnitude = (float)Math.Round(((Vector2)(transform.m12, transform.m22)).Magnitude);
+            Width = (int)xMagnitude;
+            Height = (int)yMagnitude;
+
+            System.Numerics.Vector2 pos = new System.Numerics.Vector2(transform.m13, transform.m23);
+            System.Numerics.Vector2 forward = new System.Numerics.Vector2(transform.m11, transform.m21);
+            System.Numerics.Vector2 up = new System.Numerics.Vector2(transform.m12, transform.m22);
+            System.Numerics.Vector2 offset = new System.Numerics.Vector2(Width/2, Height/2);
+            pos -= (forward / forward.Length()) * (float)(Width / 2);
+            pos -= (up/up.Length()) * (float)Height/2;
+            Console.WriteLine(pos);
             float rotation = (float)Math.Atan2(transform.m21, transform.m11);
-            Raylib.DrawTextureEx(_texture, new System.Numerics.Vector2(transform.m13 * 32, transform.m23 * 32),
+            Raylib.DrawTextureEx(_texture, pos * 32,
                 (float)(rotation * 180.0f / Math.PI), 32, Color.WHITE);
         }
     }
