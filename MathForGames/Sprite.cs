@@ -55,8 +55,8 @@ namespace MathForGames
             System.Numerics.Vector2 forward = new System.Numerics.Vector2(transform.m11, transform.m21);
             System.Numerics.Vector2 up = new System.Numerics.Vector2(transform.m12, transform.m22);
             System.Numerics.Vector2 offset = new System.Numerics.Vector2(Width/2, Height/2);
-            pos -= (forward / forward.Length()) * (float)(Width / 2);
-            pos -= (up/up.Length()) * (float)Height/2;
+            pos -= (forward / forward.Length()) * Width / 2;
+            pos -= (up/up.Length()) * Height/2;
             Console.WriteLine(pos);
             float rotation = (float)Math.Atan2(transform.m21, transform.m11);
             Raylib.DrawTextureEx(_texture, pos * 32,
